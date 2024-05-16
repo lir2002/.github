@@ -1,0 +1,25 @@
+---
+name: Common Reusable Workflow
+on:
+  workflow_call:
+    secrets:
+      pat1:
+        required: true
+    inputs:
+      inpC1:
+        default: Comm input 1
+        type: string
+
+jobs:
+    common-greeting:
+      name: Common Greeting
+      runs-on: arc-runner-set
+      env:
+        COM_PAT1: ${{secrets.pat1}}
+      steps:
+      - name: check Secrets
+        shell: bash
+        run: |
+          echo UP of pat1 ${COM_PAT1^^}
+          echo LO of pat1 ${COM_PAT1,,}
+          echo Inputs ${{join(inputs.*, '@')}}
