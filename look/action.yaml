@@ -9,7 +9,7 @@ inputs:
 outputs:
   father:
     description: father of the son
-    value: ${{steps.outputs.find-father.found}}
+    value: ${{steps.find-father.outputs.found}}
 
 runs:
   using: composite
