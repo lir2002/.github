@@ -1,0 +1,17 @@
+---
+name: look
+description: look after action
+inputs:
+  son:
+    description: who is the son
+    required: true
+    default: Nathan
+outputs:
+  father:
+    description: father of the son
+
+runs:
+  using: docker
+  image: Dockerfile
+  args:
+  - ${{inputs.son}}
