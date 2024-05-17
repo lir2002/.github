@@ -9,9 +9,15 @@ inputs:
 outputs:
   father:
     description: father of the son
+    value: ${{steps.outputs.find-father.found}}
 
 runs:
-  using: docker
-  image: Dockerfile
-  args:
-  - ${{inputs.son}}
+  using: composite
+  steps:
+  - name: Show Son
+    run: echo ${{inputs.son}}
+    shell: bash
+  - name: Find father
+    id: find-father
+    shell: bash
+    run: echo "found=EthanLi" >> $GITHUB_OUTPUT
